@@ -71,8 +71,8 @@ void dataFormat_RUN(void* ptrData)
         FSM_select(info);
 	}else{
 
-	printk("ACCEL: X(m.s-2)[%d.%06d] Y(m.s-2)[%d.%06d] Z(m.s-2)[%d.%06d]\n", accelerometerData[0].val1, accelerometerData[0].val2, accelerometerData[1].val1, accelerometerData[1].val2, accelerometerData[2].val1, accelerometerData[2].val2);
-	//k_sleep(K_MSEC(500));
+	printk("ACCEL (m.s-2) --> X: [%d.%06d] Y: [%d.%06d] Z: [%d.%06d]\n", accelerometerData[0].val1, accelerometerData[0].val2, accelerometerData[1].val1, accelerometerData[1].val2, accelerometerData[2].val1, accelerometerData[2].val2);
+	k_sleep(K_MSEC(500));
 	smf_set_state(SMF_CTX(&stateMachineInfo), &stateTable[SENSOR_SAMPLE]); 
 	}
 	 
