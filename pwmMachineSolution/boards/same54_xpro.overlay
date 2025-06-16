@@ -1,0 +1,6 @@
+/ {
+    aliases {
+        userled = &pwm_led0;
+        userbutton = &button0;
+	};
+};
