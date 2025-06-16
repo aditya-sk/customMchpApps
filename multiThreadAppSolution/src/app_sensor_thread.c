@@ -106,6 +106,6 @@ void fetchGet_Thread(void* arg1, void* arg2, void* arg3)
 		k_sleep(TIMEOUT_TWO_SEC); 
 	}
 
-	
+
 }
 
