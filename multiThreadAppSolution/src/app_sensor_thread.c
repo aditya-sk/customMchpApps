@@ -41,7 +41,7 @@ void initI2CNode()
 
 
 
-// TODO #5: thread fetches the sample, reads a specific channel and store the data into respective buffer
+// TODO #6: thread fetches the sample, reads a specific channel and store the data into respective buffer
 
 void fetchGet_Thread(void* arg1, void* arg2, void* arg3)
 {
