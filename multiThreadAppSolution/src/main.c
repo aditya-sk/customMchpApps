@@ -58,7 +58,15 @@ int main(void)
                                  fetchGet_Thread,
                                  NULL, NULL, NULL,
                                  PRIORITY_I2C, 0, K_NO_WAIT);
+
+        k_thread_name_set(button_tid, "ButtonThread");
+        k_thread_name_set(blink_tid, "BlinkThread");
+        k_thread_name_set(slave_tid, "BNO055Thread");
         
         return 0;
 }
+
+        
+
+ 
 
