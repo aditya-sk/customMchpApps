@@ -1,0 +1,19 @@
+# editors
+.vscode
+*.swp
+*~
+
+# python
+envDev
+
+# build
+/build*
+/twister-out*
+
+__pycache__/
+
+# docs
+/doc/_build*
+
+#automation script
+zephyr-setupRTOS3.sh
