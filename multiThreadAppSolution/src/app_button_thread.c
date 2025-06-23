@@ -108,7 +108,7 @@ void channelSelect_Thread(void* arg1, void* arg2, void* arg3)
                                 break;
 
                         default:
-                                currentChannel = BNO055_SENSOR_CHAN_LINEAR_ACCEL_XYZ;
+                                currentChannel = BNO055_SENSOR_CHAN_CALIBRATION_SGAM;
                                 break;
 
                         }

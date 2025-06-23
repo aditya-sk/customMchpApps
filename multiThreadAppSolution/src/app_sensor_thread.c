@@ -51,7 +51,7 @@ void fetchGet_Thread(void* arg1, void* arg2, void* arg3)
 		pwm_set_dt(&pwmBlink, 0, 0); // disable pwm
 		ret = sensor_sample_fetch(bno055_node);
 		if(ret < 0){
-			LOG_INF("Error accurred in sensor data fetching\r\n");
+			LOG_ERR("Error occurred in sensor data fetching\r\n");
 		}
 		switch(currentChannel){
 				
