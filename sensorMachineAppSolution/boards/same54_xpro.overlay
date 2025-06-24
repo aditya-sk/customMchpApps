@@ -18,14 +18,12 @@
     enable_pin: enable {
         gpios = <1 GPIO_ACTIVE_HIGH>;
         gpio-hog;                     // Mark the pin as hogged
-        //output-high;
         line-name = "BNO055 Enable Pin";  // Label for the enable pin
     };
 
     boot_pin: boot {
         gpios = <2 GPIO_ACTIVE_HIGH>;
         gpio-hog;                     // Mark the pin as hogged
-        //output-high;
         line-name = "BNO055 Boot Pin";    // Label for the boot pin
     };
 };
@@ -39,7 +37,6 @@
     reset_pin: reset {
         gpios = <6 GPIO_ACTIVE_HIGH>; // Pin 28 for reset
         gpio-hog;                     // Mark the pin as hogged
-        //output-high;
         line-name = "BNO055 Reset Pin";   // Label for the reset pin
     };
 };
