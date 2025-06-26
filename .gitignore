@@ -21,4 +21,4 @@ zephyr-setupRTOS3.sh
 # build directory
 /*/build*
 
-/*/build_flashwindows.bat
+/**/*.bat
