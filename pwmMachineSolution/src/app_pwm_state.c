@@ -151,7 +151,7 @@ void checkPeriod_RUN(void* ptrData)
 
 }
 
-// Error State has only error actions
+// Error state has only error action
 void errorHandle_RUN(void* ptrData)
 {
     const struct FSMContext* info = (const struct FSMContext*)ptrData;
@@ -159,7 +159,7 @@ void errorHandle_RUN(void* ptrData)
     {
             smf_set_state(SMF_CTX(&info), &stateTable[CALIBRATION]);
     }else{
-            // need to work on resetting the PMW module and its parameter
+            // reset the PMW module and its parameter
             smf_set_state(SMF_CTX(&info), &stateTable[PWM_INITIAL]);
     }
 }

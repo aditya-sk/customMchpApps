@@ -13,7 +13,7 @@
 /* User defined object */
 struct FSMContext stateMachineInfo;
 
-// TODO #: Finite State Machine table to redirect the function pointer with the respective states.
+// TODO #: FSM table with the function pointer and respective states.
 const struct smf_state stateTable[NUM_STATES] = 
 {
     [PWM_INITIAL] = SMF_CREATE_STATE(initPWM_ENTRY, initPWM_RUN, initPWM_EXIT, NULL, NULL),
