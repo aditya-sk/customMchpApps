@@ -99,7 +99,6 @@ enum smf_state_result ledPWM_RUN(void* ptrData)
 void ledPWM_EXIT(void* ptrData)
 {
     
-    pwm_set_dt(&pwmBlink, PERIOD_NS, PERIOD_NS); //disable PWM
     LOG_INF("PWM Blink Completed\r\n");
 }
 
