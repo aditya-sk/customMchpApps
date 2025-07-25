@@ -81,7 +81,7 @@ enum smf_state_result ledPWM_RUN(void* ptrData)
             // We have to blink led and move to sensor state
             for(int count = 0; count < 3; count++)
             {
-            ret = pwm_set_dt(&pwmBlink, PERIOD_NS, PERIOD_NS / PERIOD_HALF_DIVISOR);
+            ret = pwm_set_dt(&pwmBlink, PERIOD_NS, PERIOD_NS / PERIOD_DIVISOR);
             if(ret)
             {
                 LOG_ERR("Error %d: failed to set pulse width in state S1\n", ret);
