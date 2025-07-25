@@ -8,7 +8,7 @@
 #define TIMEOUT_FOUR_SEC K_SECONDS(4U)
 #define TIMEOUT_TWO_SEC K_SECONDS(2U)
 
-#define PERIOD_HALF_DIVISOR 3U
+#define PERIOD_DIVISOR 3U
 
 typedef enum  {
     PARENT,       // child to parent
