@@ -21,4 +21,3 @@ This repository contains PWM with LED, I2C with BNO055 sensor, SMF, and Multithr
 1. pwmMachine (PWM + SMF)
 2. sensorMachineApp (NDOF + PWM + SMF)
 3. HSMSensorPWM (PWM + NDOF + GPIO + HSM)
-4. multiThreadApp (PWM + NDOF + Threads)
