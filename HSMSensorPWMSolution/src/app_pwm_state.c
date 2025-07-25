@@ -73,14 +73,11 @@ enum smf_state_result ledPWM_RUN(void* ptrData)
 {
     int ret;
         struct FSMContext* info = (struct FSMContext*)ptrData;
-        if(info->events & EVENT_BTN_PRESS)
-        {
+        if(info->events & EVENT_BTN_PRESS){
             return SMF_EVENT_PROPAGATE;
-        }else
-        {
+        }else{
             // We have to blink led and move to sensor state
-            for(int count = 0; count < 3; count++)
-            {
+            for(int count = 0; count < 3; count++){
             ret = pwm_set_dt(&pwmBlink, PERIOD_NS, PERIOD_NS / PERIOD_DIVISOR);
             if(ret)
             {

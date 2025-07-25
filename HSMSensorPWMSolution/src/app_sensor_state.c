@@ -24,14 +24,18 @@ LOG_MODULE_REGISTER(sensor_LOG);
 
 // TODO #2: get the devicetree node and allocate memory for data
 const struct device* bno055_node = DEVICE_DT_GET(DT_NODELABEL(bno055));
-
+static struct sensor_value linearAcceleration[3]; 
+static struct sensor_value calib[4];
+static struct sensor_value gravityData[3];
+static struct sensor_value eulerData[3];
+static struct sensor_value quaternionData[3];
 
 
 // TODO #4: fetch the data from sensor, filter based on the channel of the sensor, and transition to SENSOR_CONSOLE
 enum smf_state_result dataFetch_RUN(void* ptrData)
 {
 	struct FSMContext* info = (struct FSMContext*)ptrData;
-	struct sensor_value linearAcceleration[3]; int ret;
+	int ret;
     if (info->events & EVENT_BTN_PRESS)
     {
 		return SMF_EVENT_PROPAGATE;
@@ -43,7 +47,7 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 		switch(currentChannel){
 				
 			case BNO055_SENSOR_CHAN_CALIBRATION_SGAM:
-				struct sensor_value calib[4];
+				
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_CALIBRATION_SGAM, calib);
 				LOG_INF("CALIB: SYS[%d] GYR[%d] ACC[%d] MAG[%d]\n", calib[0].val1, calib[1].val1, calib[2].val1, calib[3].val1);
 				break;
@@ -56,7 +60,7 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 				break;
 
 			case BNO055_SENSOR_CHAN_GRAVITY_XYZ:
-				struct sensor_value gravityData[3];
+				
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_GRAVITY_XYZ, gravityData);
 				LOG_INF("GRAVITY [m.s-2] -> X: [%d.%06d] Y: [%d.%06d] Z: [%d.%06d]\n",
 			       gravityData[0].val1, gravityData[0].val2, gravityData[1].val1, gravityData[1].val2, gravityData[2].val1,gravityData[2].val2);
@@ -64,7 +68,7 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 				break;
 
 			case BNO055_SENSOR_CHAN_EULER_YRP:
-				struct sensor_value eulerData[3];
+				
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_EULER_YRP, eulerData);
 				LOG_INF("EULER [rad.s-1]: X->Roll [%d.%06d] Y->Pitch [%d.%06d] Z-Yaw [%d.%06d]\n",
 			       eulerData[0].val1, eulerData[0].val2, eulerData[1].val1, eulerData[1].val2, eulerData[2].val1, eulerData[2].val2);
@@ -72,7 +76,7 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 				break;
 
 			case BNO055_SENSOR_CHAN_QUATERNION_WXYZ:
-				struct sensor_value quaternionData[3];
+				
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_QUATERNION_WXYZ, quaternionData);
 				LOG_INF("QUATERNION: W [%d.%06d] X [%d.%06d] Y [%d.%06d] Z [%d.%06d]\n",
 			       quaternionData[0].val1, quaternionData[0].val2, quaternionData[1].val1, quaternionData[1].val2, quaternionData[2].val1, quaternionData[2].val2, quaternionData[2].val1, quaternionData[2].val2);
