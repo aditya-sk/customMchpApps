@@ -1,7 +1,5 @@
 # editors
-.vscode
 *.swp
-*~
 
 # python
 envDev
@@ -20,5 +18,3 @@ zephyr-setupRTOS3.sh
 
 # build directory
 /*/build*
-
-/**/*.bat

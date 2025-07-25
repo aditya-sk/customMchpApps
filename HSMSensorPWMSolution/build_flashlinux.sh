@@ -16,4 +16,4 @@ fi
 west build -p always -b "$BOARD_NAME" "$APP_DIR" -d "$BUILD_DIR"
 
 # Flash the image to the target/board ==> same54_xpro development board
-#west flash -d "$BUILD_DIR"
+west flash -d "$BUILD_DIR"
