@@ -3,7 +3,7 @@
 
 
 
-#define PERIOD_NS PWM_SEC(1U)
+#define PERIOD_NS PWM_SEC(1U)   // 1 sec = 1 000 000 000 nsec
 
 #define TIMEOUT_FOUR_SEC K_SECONDS(4U)
 #define TIMEOUT_TWO_SEC K_SECONDS(2U)

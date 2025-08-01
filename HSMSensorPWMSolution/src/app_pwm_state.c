@@ -22,7 +22,7 @@
 
 LOG_MODULE_REGISTER(pwmLED_LOG);
 
-// TODO #1: get the devicetree node
+// get the devicetree node
 struct pwm_dt_spec pwmBlink  = PWM_DT_SPEC_GET(DT_ALIAS(userled));
 
 
@@ -68,7 +68,7 @@ void init_EXIT(void* ptrData)
         LOG_INF("Completed Init for I2C, PWM and GPIO Peripherals\r\n");
 }
 
-
+// TODO #2: Main function to initialize the SMF, Events, and start the state machine with a specific state.
 enum smf_state_result ledPWM_RUN(void* ptrData)
 {
     int ret;

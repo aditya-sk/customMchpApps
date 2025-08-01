@@ -31,7 +31,7 @@ static struct sensor_value eulerData[3];
 static struct sensor_value quaternionData[3];
 
 
-// TODO #4: fetch the data from sensor, filter based on the channel of the sensor, and transition to SENSOR_CONSOLE
+// TODO #3: fetch the data from sensor, filter based on the channel of the sensor, and transition to SENSOR_CONSOLE
 enum smf_state_result dataFetch_RUN(void* ptrData)
 {
 	struct FSMContext* info = (struct FSMContext*)ptrData;

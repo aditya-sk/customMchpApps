@@ -37,7 +37,7 @@ const struct smf_state stateTable[NUM_STATES] =
 };
 
 
-// TODO #2:Main function to initialize the SMF, Events, and start the state machine with a specific state.
+// TODO #5:Main function to initialize the SMF, Events, and start the state machine with a specific state.
 int main(void)
 {
         int ret;

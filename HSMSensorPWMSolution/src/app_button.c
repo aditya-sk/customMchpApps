@@ -31,7 +31,7 @@ static uint32_t lastTime = 0U;
 volatile enum bno055_sensor_channel currentChannel = BNO055_SENSOR_CHAN_CALIBRATION_SGAM;
 
 
-
+// TODO #4: Parent state that handles the events propogated from child.
 enum smf_state_result ChannelSelect_RUN(void* ptrData)
 {
         
