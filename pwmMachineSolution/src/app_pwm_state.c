@@ -10,7 +10,7 @@
 // Application header with Enums, Structure and function prototype
 #include <app_pwm_state.h>
 
-// TODO #1: get the devicetree node
+// TODO #2: get the devicetree node
 struct pwm_dt_spec pwmBlink  = PWM_DT_SPEC_GET(DT_ALIAS(userled));
 
 
@@ -44,7 +44,7 @@ uint8_t direction = 0U;
  */    
 
 
-// TODO #: Checking if the PWM is ready or not 
+// TODO #3: Checking if the PWM is ready or not 
 void initPWM_ENTRY(void* ptrData) 
 {
     printk("Enter to Init (LED OFF)\r\n");
@@ -58,7 +58,7 @@ void initPWM_ENTRY(void* ptrData)
     k_sleep(TIMEOUT_FOUR_SEC); 
 }
 
-//TODO #: Set the parameter to zero
+//TODO #4: Set the parameter to zero
 void initPWM_RUN(void* ptrData)
 {
     pwm_set_dt(&pwmBlink, 0, 0);  //(0 duty cycle)
@@ -67,13 +67,13 @@ void initPWM_RUN(void* ptrData)
     k_sleep(TIMEOUT_FOUR_SEC); 
 }
 
-//TODO #: Exit from init PWM state
+//TODO #5: Exit from init PWM state
 void initPWM_EXIT(void* ptrData)
 {
     printk("Completed the Init PWM LED\r\n");
 }
 
-// TODO #: Calibrating for Maximumm period based on MCU clock
+// TODO #6: Calibrating for Maximumm period based on MCU clock
 void calibratePWM_ENTRY(void* ptrData)
 {
     printk("In CALIBRATION state\n");
@@ -88,7 +88,8 @@ void calibratePWM_ENTRY(void* ptrData)
         {
             printk("Error: PWM device doesn't support the period at least %lu\n", 4U * MIN_PERIOD);
             // Transition to error State
-            smf_set_state(SMF_CTX(&stateMachineInfo), &stateTable[ERROR_STATE]);  
+            smf_set_state(SMF_CTX(&stateMachineInfo), &stateTable[ERROR_STATE]);
+            break;
         }
     }
     
@@ -103,7 +104,7 @@ void calibration_EXIT(void* ptrData)
     printk("Completed the caliberation for MAX period\r\n");
 }
 
-// TODO # Set Period and pulse for PWM using PWM interface API
+// TODO #7: Set Period and pulse for PWM using PWM interface API
 void ledPWM_RUN(void* ptrData)
 {
     int ret;
@@ -132,7 +133,7 @@ void secondState_ENTRY(void* ptrData)
     printk("Enter S2 State\r\n");
 }
 
-// TODO #: Reduce the period by factor of 2
+// TODO #8: Reduce the period by factor of 2
 void checkPeriod_RUN(void* ptrData) 
 {   
     const struct FSMContext* info = (const struct FSMContext*)ptrData;

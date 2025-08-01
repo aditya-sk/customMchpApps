@@ -70,7 +70,7 @@ void firstState_EXIT(void* ptrData)
     printk("Exit S1 State\r\n");
 }
 
-// S2: Reduce the period by factor of 2
+// Reduce the period by factor of 2
 void secondState_ENTRY(void* ptrData) 
 {
     printk("Enter S2 State\r\n");

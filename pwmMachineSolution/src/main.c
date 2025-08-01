@@ -13,7 +13,7 @@
 /* User defined object */
 struct FSMContext stateMachineInfo;
 
-// TODO #: FSM table with the function pointer and respective states.
+// TODO #1: FSM table with the function pointer and respective states.
 const struct smf_state stateTable[NUM_STATES] = 
 {
     [PWM_INITIAL] = SMF_CREATE_STATE(initPWM_ENTRY, initPWM_RUN, initPWM_EXIT, NULL, NULL),
@@ -24,7 +24,7 @@ const struct smf_state stateTable[NUM_STATES] =
     
 };
 
-// TODO #:Main function to initialize the SMF and start the state machine
+// TODO #9:Main function to initialize the SMF and start the state machine
 int main(void)
 {
         int ret;
