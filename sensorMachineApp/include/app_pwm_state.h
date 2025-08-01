@@ -3,8 +3,8 @@
 
 
 // Assuming for 7-bit 
-#define MIN_PERIOD PWM_SEC(1U) / 128U
-#define MAX_PERIOD PWM_SEC(1U)
+#define MIN_PERIOD PWM_SEC(1U) / 128U    // 7,812,500 ns
+#define MAX_PERIOD PWM_SEC(1U)          // // 1 sec = 1,000,000,000 ns
 
 
 #define TIMEOUT_FOUR_SEC K_SECONDS(4U)

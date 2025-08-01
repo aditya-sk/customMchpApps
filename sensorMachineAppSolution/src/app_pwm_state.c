@@ -97,7 +97,8 @@ void calibratePWM_ENTRY(void* ptrData)
             {
                 printk("Error: PWM device doesn't support the period at least %lu\n", 4U * MIN_PERIOD);
                 // Transition to error State
-                smf_set_state(SMF_CTX(&stateMachineInfo), &stateTable[ERROR_STATE]);  
+                smf_set_state(SMF_CTX(&stateMachineInfo), &stateTable[ERROR_STATE]);
+                break;  
             }
         }
         
