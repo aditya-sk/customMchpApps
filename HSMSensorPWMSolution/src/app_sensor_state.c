@@ -55,7 +55,7 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 			case BNO055_SENSOR_CHAN_LINEAR_ACCEL_XYZ:
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_LINEAR_ACCEL_XYZ, linearAcceleration);
 				LOG_INF("ACCEL [m.s-2] -> X: [%d.%06d] Y: [%d.%06d] Z: [%d.%06d]\n", 
-					linearAcceleration[0].val1, linearAcceleration[0].val2, linearAcceleration[1].val1, linearAcceleration[1].val2, linearAcceleration[2].val1, linearAcceleration[2].val2);
+					linearAcceleration[0].val1, abs(linearAcceleration[0].val2), linearAcceleration[1].val1, abs(linearAcceleration[1].val2), linearAcceleration[2].val1, abs(linearAcceleration[2].val2));
 				
 				break;
 
@@ -63,7 +63,7 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 				
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_GRAVITY_XYZ, gravityData);
 				LOG_INF("GRAVITY [m.s-2] -> X: [%d.%06d] Y: [%d.%06d] Z: [%d.%06d]\n",
-			       gravityData[0].val1, gravityData[0].val2, gravityData[1].val1, gravityData[1].val2, gravityData[2].val1,gravityData[2].val2);
+			       gravityData[0].val1, abs(gravityData[0].val2), gravityData[1].val1, abs(gravityData[1].val2), gravityData[2].val1, abs(gravityData[2].val2));
 
 				break;
 
@@ -71,7 +71,7 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 				
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_EULER_YRP, eulerData);
 				LOG_INF("EULER [rad.s-1]: X->Roll [%d.%06d] Y->Pitch [%d.%06d] Z-Yaw [%d.%06d]\n",
-			       eulerData[0].val1, eulerData[0].val2, eulerData[1].val1, eulerData[1].val2, eulerData[2].val1, eulerData[2].val2);
+			        eulerData[0].val1, abs(eulerData[0].val2), eulerData[1].val1, abs(eulerData[1].val2), eulerData[2].val1, abs(eulerData[2].val2));
 
 				break;
 
@@ -79,14 +79,14 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 				
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_QUATERNION_WXYZ, quaternionData);
 				LOG_INF("QUATERNION: W [%d.%06d] X [%d.%06d] Y [%d.%06d] Z [%d.%06d]\n",
-			       quaternionData[0].val1, quaternionData[0].val2, quaternionData[1].val1, quaternionData[1].val2, quaternionData[2].val1, quaternionData[2].val2, quaternionData[2].val1, quaternionData[2].val2);
+			       quaternionData[0].val1, abs(quaternionData[0].val2), quaternionData[1].val1, abs(quaternionData[1].val2), quaternionData[2].val1, abs(quaternionData[2].val2), quaternionData[2].val1, abs(quaternionData[2].val2));
 
 				break;
 			
 			default:
 				sensor_channel_get(bno055_node, currentChannel, linearAcceleration);
 				LOG_INF("ACCEL [m.s-2] -> X [%d.%06d] Y [%d.%06d] Z [%d.%06d]\n", 
-					linearAcceleration[0].val1, linearAcceleration[0].val2, linearAcceleration[1].val1, linearAcceleration[1].val2, linearAcceleration[2].val1, linearAcceleration[2].val2);
+					linearAcceleration[0].val1, abs(linearAcceleration[0].val2), linearAcceleration[1].val1, abs(linearAcceleration[1].val2), linearAcceleration[2].val1, abs(linearAcceleration[2].val2));
 
 				break;
 		}
@@ -114,6 +114,11 @@ int initI2CNode()
 	config.val1 = BNO055_POWER_NORMAL;
 	config.val2 = 0;
 	sensor_attr_set(bno055_node, SENSOR_CHAN_ALL, BNO055_SENSOR_ATTR_POWER_MODE, &config);
+	config.val1 = 100;
+	config.val2 = 0;
+	if (sensor_attr_set(bno055_node, SENSOR_CHAN_ALL, SENSOR_ATTR_SAMPLING_FREQUENCY, &config) < 0){
+		LOG_ERR("error occured");
+	}
 	return 0;
 	
 }
