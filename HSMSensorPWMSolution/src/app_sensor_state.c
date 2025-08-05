@@ -28,7 +28,7 @@ static struct sensor_value linearAcceleration[3];
 static struct sensor_value calib[4];
 static struct sensor_value gravityData[3];
 static struct sensor_value eulerData[3];
-static struct sensor_value quaternionData[3];
+static struct sensor_value quaternionData[4];
 
 
 // TODO #3: fetch the data from sensor, filter based on the channel of the sensor, and transition to SENSOR_CONSOLE
@@ -69,8 +69,11 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 
 			case BNO055_SENSOR_CHAN_EULER_YRP:
 				
-				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_EULER_YRP, eulerData);
-				LOG_INF("EULER [rad.s-1]: X->Roll [%d.%06d] Y->Pitch [%d.%06d] Z-Yaw [%d.%06d]\n",
+				//sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_EULER_YRP, eulerData);
+				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_EULER_R , &eulerData[0]);
+				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_EULER_P , &eulerData[1]);
+				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_EULER_Y , &eulerData[2]);
+				LOG_INF("EULER [radians]: X->Roll [%d.%06d] Y->Pitch [%d.%06d] Z-Yaw [%d.%06d]\n",
 			        eulerData[0].val1, abs(eulerData[0].val2), eulerData[1].val1, abs(eulerData[1].val2), eulerData[2].val1, abs(eulerData[2].val2));
 
 				break;
@@ -79,7 +82,7 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 				
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_QUATERNION_WXYZ, quaternionData);
 				LOG_INF("QUATERNION: W [%d.%06d] X [%d.%06d] Y [%d.%06d] Z [%d.%06d]\n",
-			       quaternionData[0].val1, abs(quaternionData[0].val2), quaternionData[1].val1, abs(quaternionData[1].val2), quaternionData[2].val1, abs(quaternionData[2].val2), quaternionData[2].val1, abs(quaternionData[2].val2));
+			       quaternionData[0].val1, abs(quaternionData[0].val2), quaternionData[1].val1, abs(quaternionData[1].val2), quaternionData[2].val1, abs(quaternionData[2].val2), quaternionData[3].val1, abs(quaternionData[3].val2));
 
 				break;
 			
@@ -92,6 +95,7 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 		}
 
 	}
+	k_sleep(K_MSEC(100));
 	smf_set_state(SMF_CTX(&stateMachineInfo), &stateTable[SAMPLE_FORMAT]); 
 	return SMF_EVENT_HANDLED;
 	 
@@ -114,11 +118,6 @@ int initI2CNode()
 	config.val1 = BNO055_POWER_NORMAL;
 	config.val2 = 0;
 	sensor_attr_set(bno055_node, SENSOR_CHAN_ALL, BNO055_SENSOR_ATTR_POWER_MODE, &config);
-	config.val1 = 100;
-	config.val2 = 0;
-	if (sensor_attr_set(bno055_node, SENSOR_CHAN_ALL, SENSOR_ATTR_SAMPLING_FREQUENCY, &config) < 0){
-		LOG_ERR("error occured");
-	}
 	return 0;
 	
 }

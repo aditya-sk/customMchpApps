@@ -55,7 +55,6 @@ int main(void)
                 {
                     return -1;
                 }
-                k_sleep(TIMEOUT_FOUR_SEC);
             }
         return 0;
 }
