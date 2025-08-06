@@ -64,6 +64,7 @@ enum smf_state_result ChannelSelect_RUN(void* ptrData)
                 }
         infoData->events &= ~EVENT_BTN_PRESS;  // Clear event *after* handling
         k_event_clear(&infoData->smf_event, EVENT_BTN_PRESS);
+        k_sleep(K_MSEC(20));
         return SMF_EVENT_HANDLED;
 }
 
