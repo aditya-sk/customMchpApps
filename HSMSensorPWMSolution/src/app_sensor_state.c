@@ -73,7 +73,7 @@ enum smf_state_result dataFetch_RUN(void* ptrData)
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_EULER_R , &eulerData[0]);
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_EULER_P , &eulerData[1]);
 				sensor_channel_get(bno055_node, BNO055_SENSOR_CHAN_EULER_Y , &eulerData[2]);
-				LOG_INF("EULER [radians]: X->Roll [%d.%06d] Y->Pitch [%d.%06d] Z-Yaw [%d.%06d]\n",
+				LOG_INF("EULER [rad.s-1]: Yaw [%d.%06d] Pitch [%d.%06d] Roll [%d.%06d]\n",
 			        eulerData[0].val1, abs(eulerData[0].val2), eulerData[1].val1, abs(eulerData[1].val2), eulerData[2].val1, abs(eulerData[2].val2));
 
 				break;
