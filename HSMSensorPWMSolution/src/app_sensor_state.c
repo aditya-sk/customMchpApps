@@ -110,13 +110,16 @@ int initI2CNode()
 		smf_set_state(SMF_CTX(&stateMachineInfo), &stateTable[ERROR_STATE]);
 		return -1;
 	}
+	k_sleep(K_MSEC(30));
 	struct sensor_value config = {
 		.val1 = BNO055_MODE_NDOF,
 		.val2 = 0,
 	};
+	k_sleep(K_MSEC(30));
 	sensor_attr_set(bno055_node, SENSOR_CHAN_ALL, SENSOR_ATTR_CONFIGURATION, &config);
 	config.val1 = BNO055_POWER_NORMAL;
 	config.val2 = 0;
+	k_sleep(K_MSEC(30));
 	sensor_attr_set(bno055_node, SENSOR_CHAN_ALL, BNO055_SENSOR_ATTR_POWER_MODE, &config);
 	return 0;
 	

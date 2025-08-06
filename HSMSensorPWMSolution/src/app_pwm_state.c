@@ -55,17 +55,11 @@ void init_ENTRY(void* ptrData)
 enum smf_state_result init_RUN(void* ptrData)
 {
 
-    struct FSMContext* info = (struct FSMContext*)ptrData;
-    if(info->events & EVENT_BTN_PRESS){
-            return SMF_EVENT_PROPAGATE;
-
-    }else{
-        pwm_set_dt(&pwmBlink, PERIOD_NS, PERIOD_NS);  //(0 duty cycle)
-        LOG_INF("Welcome to HSM State Machines\r\n");
-        k_sleep(TIMEOUT_TWO_SEC); 
-        smf_set_state(SMF_CTX(&stateMachineInfo), &stateTable[LED_BLINK]); // Transition to caliberation mode
-        return SMF_EVENT_HANDLED;
-    }
+    pwm_set_dt(&pwmBlink, PERIOD_NS, PERIOD_NS);  //(0 duty cycle)
+    LOG_INF("Welcome to HSM State Machines\r\n");
+    k_sleep(TIMEOUT_TWO_SEC); 
+    smf_set_state(SMF_CTX(&stateMachineInfo), &stateTable[LED_BLINK]); // Transition to caliberation mode
+    return SMF_EVENT_HANDLED;
 }
 
 //TODO #: Exit from init PWM state
